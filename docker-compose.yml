@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: megas-xlr-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: megas
+      POSTGRES_PASSWORD: megas_local_dev
+      POSTGRES_DB: megas_xlr
+    ports:
+      - "5433:5432"          # 5433 to avoid collision with JUDAH/BR Masters local DBs
+    volumes:
+      - megas_xlr_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U megas -d megas_xlr"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  megas_xlr_pg_data:
