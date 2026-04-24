@@ -1,0 +1,16 @@
+.env
+.env.*
+!.env.example
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+__pycache__/
+*.pyc
+.coverage
+htmlcov/
+.antigravity/*
+!.antigravity/workspace.json
+.idea/
+.vscode/settings.json
+.DS_Store
