@@ -25,7 +25,7 @@ def _load_instructions() -> str:
 
 megas_o = Agent(
     name="Megas-o",
-    agent_id="megas-o",
+    id="megas-o",
     description=(
         "Orchestrator — Senior Product Owner plus Senior Technical Program Manager. "
         "Turns a ProjectBrief plus FeatureRequest into a structured Backlog."
