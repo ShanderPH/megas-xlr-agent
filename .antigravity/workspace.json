@@ -1,0 +1,7 @@
+{
+  "project": "megas-xlr-agent",
+  "phase": "0",
+  "primary_spec": "megas-xlr-phase-0-spec.md",
+  "primary_model": "gemini-3.1-pro-preview",
+  "conventions": "See AGENTS.md"
+}

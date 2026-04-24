@@ -30,6 +30,13 @@ When a brief arrives, think in this order:
 - Time-based logic (deadlines, locking, scheduling, cron) always includes a timezone/DST story.
 - i18n is P1 when the brief mentions multiple locales, otherwise P2.
 - Any destructive user action (delete, lock, submit-final) includes a confirmation UX story and an audit log story.
+- QA coverage is never a single story. Every feature produces at minimum:
+  (a) an input validation matrix test,
+  (b) one E2E happy-path test covering the user's primary flow,
+  (c) one failure-injection test per external integration (timeouts, 5xx, malformed payloads),
+  (d) one authorization boundary test for any multi-tenant or user-scoped endpoint.
+  These are four separate BacklogItems, not one. If three of them would be trivial, they still exist as items so QA owns them explicitly.
+- Any feature that filters, groups, or validates domain entities by a categorical attribute (player position, user role, product tier, item type) must either: (1) cite the source-of-truth for that attribute explicitly in the item description, or (2) raise an OpenQuestion naming the possible sources and asking which owns it.
 
 # Item id format
 
