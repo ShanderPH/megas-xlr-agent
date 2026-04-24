@@ -2,6 +2,7 @@
 
 import asyncio
 import json
+
 from dotenv import load_dotenv
 
 from agents import megas_o
@@ -13,8 +14,7 @@ BRIEF = ProjectBrief(
     name="BR Masters",
     slug="br-masters",
     domain=(
-        "Brazilian football predictions — gamified betting-style picks "
-        "for the Brasileirão season"
+        "Brazilian football predictions — gamified betting-style picks for the Brasileirão season"
     ),
     tech_stack=[
         "Next.js 16",
@@ -51,8 +51,7 @@ FEATURE = FeatureRequest(
         "performance during the round — goals, assists, cards, minutes played."
     ),
     business_goal=(
-        "Increase weekly active user engagement and session depth "
-        "during Brasileirão rounds"
+        "Increase weekly active user engagement and session depth during Brasileirão rounds"
     ),
     success_metric=(
         "At least 60% of active users submit a lineup for each round; "

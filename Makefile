@@ -20,7 +20,7 @@ test:
 	uv run pytest
 
 smoke:
-	uv run python scripts/smoke_test.py
+	uv run python -m scripts.smoke_test
 
 lint:
 	uv run ruff check . --fix
