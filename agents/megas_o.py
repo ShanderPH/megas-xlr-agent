@@ -4,16 +4,12 @@ import os
 from pathlib import Path
 
 from agno.agent import Agent
-from agno.db.postgres import PostgresDb
 from agno.models.google import Gemini
 
+from db import DB
 from schemas.backlog import Backlog
 
 _PROMPT_PATH = Path(__file__).parent / "prompts" / "megas_o.md"
-_DB_URL = os.environ.get(
-    "DATABASE_URL",
-    "postgresql+psycopg://megas:megas_local_dev@localhost:5433/megas_xlr",
-)
 _MODEL_ID = os.environ.get("GEMINI_MODEL", "gemini-3.1-pro-preview")
 
 
@@ -23,6 +19,11 @@ def _load_instructions() -> str:
     return _PROMPT_PATH.read_text(encoding="utf-8")
 
 
+# Module-level model so agentos_app can register the exact same instance
+# in the Registry without tripping over Agent.model being Optional[Model].
+MEGAS_O_MODEL: Gemini = Gemini(id=_MODEL_ID)
+
+
 megas_o = Agent(
     name="Megas-o",
     id="megas-o",
@@ -30,10 +31,10 @@ megas_o = Agent(
         "Orchestrator — Senior Product Owner plus Senior Technical Program Manager. "
         "Turns a ProjectBrief plus FeatureRequest into a structured Backlog."
     ),
-    model=Gemini(id=_MODEL_ID),
+    model=MEGAS_O_MODEL,
     instructions=_load_instructions(),
     output_schema=Backlog,
-    db=PostgresDb(db_url=_DB_URL),
+    db=DB,
     markdown=False,
     telemetry=False,
 )
