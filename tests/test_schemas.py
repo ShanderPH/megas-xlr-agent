@@ -1,7 +1,19 @@
 import pytest
 from pydantic import ValidationError
 
-from schemas.backlog import Backlog, BacklogItem
+from schemas.backlog import Backlog, BacklogItem, OpenQuestion
+from schemas.brief import FeatureRequest, ProjectBrief
+
+
+@pytest.mark.parametrize(
+    "schema",
+    [ProjectBrief, FeatureRequest, Backlog, BacklogItem, OpenQuestion],
+)
+def test_schema_supports_deferred_annotations_and_json_schema(schema: type) -> None:
+    schema.model_rebuild(force=True)
+    generated = schema.model_json_schema()
+    assert generated["title"] == schema.__name__
+    assert generated["type"] == "object"
 
 
 def test_backlog_roundtrip() -> None:

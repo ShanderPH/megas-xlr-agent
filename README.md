@@ -1,46 +1,29 @@
 # Megas-xlr
 
-Megas-xlr is a multi-agent engineering system built on Agno 2.x, designed to autonomously plan, architect, and orchestrate software tasks. It acts as the decision and memory layer for software engineering projects.
+Sistema multiagente de engenharia baseado em Agno 2.x. A baseline oficial usa CPython 3.14
+convencional, com GIL; free-threaded não é suportado como runtime padrão.
 
-## Phase status
-
-Phase 0 — scaffold + Megas-o MVP
-
-## Quickstart
-
-1. `make install`
-2. `make up`
-3. `cp .env.example .env` (fill in your Gemini API key)
-4. `make dev`
-
-## Verify
-
-Run the checks and smoke test:
+## Instalação
 
 ```bash
-make check
-make smoke
+uv python install 3.14
+uv sync --all-groups --python 3.14
 ```
 
-The smoke test will output a JSON representation of the generated backlog for the target feature.
+## Execução
 
-## Repo layout
+Copie `.env.example` para `.env` apenas para uso online. A aplicação pode ser importada e construída
+sem `GOOGLE_API_KEY`. Inicie Postgres e a API com `make up` e `make dev`.
 
-```text
-megas-xlr-agent/
-├── agentos_app.py
-├── agents/          # Megas agents and prompts
-├── schemas/         # Pydantic schemas (Brief, Backlog, etc.)
-├── scripts/         # Smoke tests and utility scripts
-└── tests/           # Pytest test suite
-```
+## Validação
 
-## Roadmap
+- `make check`: Ruff, mypy strict, formatação em modo check e testes offline; não altera arquivos.
+- `make format`: formata arquivos.
+- `make fix`: aplica autofix e formatação.
+- `make test-integration`: testa o Postgres local.
+- `make smoke`: testes online, requer credenciais.
+- `make clean`: remove apenas caches e relatórios; preserva containers e volumes.
+- `CONFIRM_DESTROY_LOCAL_DATA=yes make destroy-local-data`: destrói explicitamente o volume local.
 
-Phase 0 delivers the scaffold plus Megas-o only. See [megas-xlr-phase-0-spec.md](megas-xlr-phase-0-spec.md).
-
-## Conventions
-
-- Use Conventional Commits (`feat:`, `chore:`, etc.)
-- Branch naming: `feature/*`, `fix/*`, `chore/*`
-- Pull Request flow: Open a PR against `main` with DoD checklist verified before merging.
+Markers registrados: `offline`, `integration`, `online`, `slow` e `destructive`. A CI executa os
+checks offline em Python 3.14 no Windows e Linux. Veja [ADR-001](docs/adr/ADR-001-python-314.md).

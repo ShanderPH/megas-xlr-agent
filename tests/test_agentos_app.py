@@ -1,18 +1,13 @@
-import os
-
 import fastapi
 import pytest
 
-# Gate the test
-pytestmark = pytest.mark.skipif(
-    not os.environ.get("GOOGLE_API_KEY"),
-    reason="GOOGLE_API_KEY is not set",
-)
 
+def test_agentos_app_validity_without_credentials(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.delenv("GOOGLE_API_KEY", raising=False)
+    from agentos_app import create_agent_os, create_app
 
-def test_agentos_app_validity() -> None:
-    from agentos_app import agent_os, app
-
+    agent_os = create_agent_os()
+    app = create_app(agent_os)
     assert isinstance(app, fastapi.FastAPI)
 
     # Check if megas_o is in the agents list

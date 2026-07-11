@@ -3,7 +3,7 @@ name = "megas-xlr-agent"
 version = "0.1.0"
 description = "Megas-xlr — multi-agent software engineering company. Phase 0 scaffold."
 readme = "README.md"
-requires-python = ">=3.12,<3.13"
+requires-python = ">=3.14,<3.15"
 authors = [{ name = "Felipe Braat", email = "felipe@febrate.com" }]
 license = { text = "MIT" }
 dependencies = [
@@ -38,7 +38,7 @@ packages = ["agents", "schemas"]
 
 [tool.ruff]
 line-length = 100
-target-version = "py312"
+target-version = "py314"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "N", "UP", "B", "SIM", "RUF"]
@@ -48,7 +48,7 @@ ignore = ["E501"]   # handled by formatter
 quote-style = "double"
 
 [tool.mypy]
-python_version = "3.12"
+python_version = "3.14"
 strict = true
 files = ["agents", "schemas", "agentos_app.py"]
 plugins = ["pydantic.mypy"]
@@ -57,3 +57,4 @@ plugins = ["pydantic.mypy"]
 asyncio_mode = "auto"
 testpaths = ["tests"]
 addopts = "-v --tb=short --strict-markers"
+markers = ["offline", "integration", "online", "slow", "destructive"]

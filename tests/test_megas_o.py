@@ -4,13 +4,13 @@ import re
 import pytest
 
 # Gate the test
-pytestmark = pytest.mark.skipif(
-    not os.environ.get("GOOGLE_API_KEY"),
-    reason="GOOGLE_API_KEY is not set",
-)
+pytestmark = [
+    pytest.mark.online,
+    pytest.mark.slow,
+    pytest.mark.skipif(not os.environ.get("GOOGLE_API_KEY"), reason="GOOGLE_API_KEY is not set"),
+]
 
 
-@pytest.mark.slow
 @pytest.mark.asyncio
 async def test_megas_o_smoke() -> None:
     from agents import megas_o
