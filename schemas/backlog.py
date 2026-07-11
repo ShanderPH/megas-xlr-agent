@@ -1,4 +1,4 @@
-"""The structured output Megas-o produces."""
+"""Legacy backlog contracts retained for schema compatibility."""
 
 from typing import Literal
 

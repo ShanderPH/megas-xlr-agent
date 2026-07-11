@@ -1,4 +1,4 @@
-.PHONY: install up down dev test test-integration smoke lint format fix typecheck check clean destroy-local-data logs
+.PHONY: install up down dev test test-integration lint format fix typecheck check clean destroy-local-data logs
 install:
 	uv sync --all-groups --python 3.14
 up:
@@ -11,8 +11,6 @@ test:
 	uv run pytest -m "not integration and not online and not slow and not destructive"
 test-integration:
 	uv run pytest -m integration
-smoke:
-	uv run pytest -m online
 lint:
 	uv run ruff check .
 format:

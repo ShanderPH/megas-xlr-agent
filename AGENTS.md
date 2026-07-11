@@ -13,7 +13,6 @@ Megas-xlr is a multi-agent engineering system built on Agno 2.x. It is NOT a web
 - Agno imports canonical:
   - `from agno.agent import Agent`
   - `from agno.os import AgentOS`
-  - `from agno.models.google import Gemini`
   - `from agno.models.anthropic import Claude`
   - `from agno.db.postgres import PostgresDb`
 - Every agent has an `output_schema` set to a Pydantic model. No free-form text agents.

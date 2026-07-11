@@ -1,4 +1,4 @@
-"""Inputs that arrive at Megas-o for any project/feature cycle."""
+"""Legacy project brief contracts retained for schema compatibility."""
 
 from pydantic import BaseModel, Field
 
