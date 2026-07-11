@@ -10,6 +10,4 @@ def test_agentos_app_validity_without_credentials(monkeypatch: pytest.MonkeyPatc
     app = create_app(agent_os)
     assert isinstance(app, fastapi.FastAPI)
 
-    # Check if megas_o is in the agents list
-    agent_ids = [agent.id for agent in agent_os.agents]
-    assert "megas-o" in agent_ids
+    assert agent_os.agents == []

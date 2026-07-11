@@ -21,7 +21,6 @@ sem `GOOGLE_API_KEY`. Inicie Postgres e a API com `make up` e `make dev`.
 - `make format`: formata arquivos.
 - `make fix`: aplica autofix e formatação.
 - `make test-integration`: testa o Postgres local.
-- `make smoke`: testes online, requer credenciais.
 - `make clean`: remove apenas caches e relatórios; preserva containers e volumes.
 - `CONFIRM_DESTROY_LOCAL_DATA=yes make destroy-local-data`: destrói explicitamente o volume local.
 

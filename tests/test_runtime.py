@@ -12,10 +12,9 @@ def test_runtime_is_conventional_cpython_314() -> None:
 def test_supported_dependencies_import() -> None:
     import agno
     import fastapi
-    import google.genai
     import psycopg
     import pydantic
     import sqlalchemy
     import uvicorn
 
-    assert all((agno, fastapi, google.genai, psycopg, pydantic, sqlalchemy, uvicorn))
+    assert all((agno, fastapi, psycopg, pydantic, sqlalchemy, uvicorn))

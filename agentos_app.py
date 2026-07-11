@@ -6,7 +6,6 @@ from agno.os import AgentOS
 from agno.registry import Registry
 from fastapi import FastAPI
 
-from agents.megas_o import create_megas_o
 from db import create_db
 from schemas.backlog import Backlog, BacklogItem, OpenQuestion
 from schemas.brief import FeatureRequest, ProjectBrief
@@ -14,17 +13,15 @@ from schemas.brief import FeatureRequest, ProjectBrief
 
 def create_agent_os() -> AgentOS:
     db = create_db()
-    agent, model = create_megas_o(db)
     registry = Registry(
         name="Megas-xlr Registry",
-        models=[model],
         dbs=[db],
         schemas=[ProjectBrief, FeatureRequest, Backlog, BacklogItem, OpenQuestion],
     )
     return AgentOS(
         id="megas-xlr",
         description="Megas-xlr multi-agent engineering system",
-        agents=[agent],
+        agents=[],
         db=db,
         registry=registry,
     )
