@@ -13,7 +13,7 @@ uv sync --all-groups --python 3.14
 ## Execução
 
 Copie `.env.example` para `.env` apenas para uso online. A aplicação pode ser importada e construída
-sem `GOOGLE_API_KEY`. Inicie Postgres e a API com `make up` e `make dev`.
+sem credenciais de provider. Inicie Postgres e a API com `make up` e `make dev`.
 
 ## Validação
 
