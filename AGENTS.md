@@ -8,7 +8,7 @@ Megas-xlr is a multi-agent engineering system built on Agno 2.x. It is NOT a web
 
 ## Hard rules
 
-- Python 3.12 only. Never introduce syntax requiring 3.13+.
+- CPython >=3.14,<3.15 only, using the conventional GIL build. Free-threaded is not the default.
 - Pydantic v2 syntax only. `Field(default_factory=...)` for mutable defaults. No `.dict()` calls — use `.model_dump()`.
 - Agno imports canonical:
   - `from agno.agent import Agent`
@@ -35,7 +35,7 @@ Megas-xlr is a multi-agent engineering system built on Agno 2.x. It is NOT a web
 ## When you change behavior
 1. Update or add the test first.
 2. Implement.
-3. Run `make check` locally. If it fails, you are not done.
+3. Run the non-mutating `make check` locally. If it fails, you are not done.
 4. Update `README.md` or `AGENTS.md` if conventions shifted.
 5. Open PR against `main` with DoD checklist referenced.
 
